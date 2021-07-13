@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="jumbotron">
+  <h1 class="display-4">ブログ</h1>
+  <p class="lead">記事一覧です</p>
+</div>
+{% endblock header %}
+
+{% block content %}
+<div class="container">
+    <a href="{% url 'create' %}" class="btn btn-primary">新規作成</a>
+    {% for item in blog_all_items %}
+    <div class="card">
+        <h5 class="card-header">{{ item.category }}</h5>
+        <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <h5 class="card-title">{{ item.postdate }}</h5>
+            <!--        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+            <a href="{% url 'detail' item.pk %}" class="btn btn-primary">詳細へ</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
